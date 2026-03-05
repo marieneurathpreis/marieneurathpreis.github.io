@@ -20,6 +20,19 @@ body {
   margin-bottom: 64px;
 }
 
+/* ── Single-column text section ── */
+.one-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  margin-bottom: 72px;
+}
+
+.one-col p {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
 /* ── Two-column text section ── */
 .two-col {
   display: grid;
