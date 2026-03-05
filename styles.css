@@ -1,0 +1,144 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  color: #000;
+  background: #fff;
+  padding: 64px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Title ── */
+.page-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 64px;
+}
+
+/* ── Two-column text section ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 72px;
+}
+
+.two-col p {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* ── Single-column header ── */
+.section-header {
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 2.25rem);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 56px;
+}
+
+/* ── Three-column image section ── */
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.img-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.img-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.img-card img:hover {
+  opacity: 0.82;
+}
+
+.img-caption {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ── Dividers ── */
+hr {
+  border: none;
+  border-top: 1px solid #000;
+  margin-bottom: 72px;
+}
+
+/* ══════════════════════════════════════════
+   LIGHTBOX — shared overlay base
+   ══════════════════════════════════════════ */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.92);
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+/* Close button */
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1010;
+  transition: opacity 0.2s;
+}
+
+.lightbox-close:hover {
+  opacity: 0.55;
+}
+
+/* ── Image lightbox ── */
+#lightbox-image .lightbox-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
+}
+
+/* ── iFrame lightbox ── */
+#lightbox-iframe .lightbox-frame-wrap {
+  width: 88vw;
+  height: 88vh;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
+}
+
+#lightbox-iframe .lightbox-frame-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
