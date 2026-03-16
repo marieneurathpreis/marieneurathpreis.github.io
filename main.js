@@ -39,7 +39,8 @@
   });
 
   cards[2].addEventListener('click', () => {
-    openImageLightbox(cards[2].src);
+    //openImageLightbox(cards[2].src);
+      openIframeLightbox('Ertl__dieGraphische_Datenvisualisierung_FastFashion.pdf')
   });
 
   // ── close buttons ─────────────────────────────────────────
