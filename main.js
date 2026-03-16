@@ -27,20 +27,17 @@
 
   // ── wire up image cards ───────────────────────────────────
   const cards = document.querySelectorAll('.img-card img');
-  // cards[0] = 1.png  → submission1.pdf
-  // cards[1] = 3.png  → forked repo (Ansgar Wolsing)
-  // cards[2] = 2.png  → submission3.pdf
 
   cards[0].addEventListener('click', () => {
-    openIframeLightbox('submission1.pdf');
+    openIframeLightbox('Hauptpreis_Strieder.pdf');
   });
 
   cards[1].addEventListener('click', () => {
-    openIframeLightbox('https://<username>.github.io/<forked-repo>/index.html');
+    openIframeLightbox('https://bydata.github.io/akwien-marie-neurath');
   });
 
   cards[2].addEventListener('click', () => {
-    openIframeLightbox('submission3.pdf');
+    openIframeLightbox('Ertl__dieGraphische_Datenvisualisierung_FastFashion.pdf');
   });
 
   // ── close buttons ─────────────────────────────────────────
