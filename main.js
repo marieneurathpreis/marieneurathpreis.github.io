@@ -1,27 +1,63 @@
 (() => {
-  const imgLightbox    = document.getElementById('lightbox-image');
-  const iframeLightbox = document.getElementById('lightbox-iframe');
-  const lightboxImg    = document.getElementById('lightbox-img');
-  const lightboxIframe = document.getElementById('lightbox-iframe-src');
+  // ── PDF.js setup ──────────────────────────────────────────
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  // ── helpers ──────────────────────────────────────────────
-  function openImageLightbox(src) {
-    lightboxImg.src = src;
-    imgLightbox.classList.add('active');
+  // ── element refs ──────────────────────────────────────────
+  const pdfLightbox    = document.getElementById('lightbox-pdf');
+  const iframeLightbox = document.getElementById('lightbox-iframe');
+  const pdfContainer   = document.getElementById('lightbox-pdf-container');
+  const iframeSrc      = document.getElementById('lightbox-iframe-src');
+
+  // ── helpers ───────────────────────────────────────────────
+  async function openPdfLightbox(pdfUrl) {
+    // Clear any previously rendered pages
+    pdfContainer.innerHTML = '';
+    pdfLightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    try {
+      const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page     = await pdf.getPage(i);
+        // Scale to fit the lightbox width (~90vw, max 900px)
+        const desiredWidth = Math.min(window.innerWidth * 0.85, 900);
+        const unscaled     = page.getViewport({ scale: 1 });
+        const scale        = desiredWidth / unscaled.width;
+        const viewport     = page.getViewport({ scale });
+
+        const canvas    = document.createElement('canvas');
+        canvas.width    = viewport.width;
+        canvas.height   = viewport.height;
+        canvas.style.display = 'block';
+        canvas.style.marginBottom = '8px';
+
+        await page.render({
+          canvasContext: canvas.getContext('2d'),
+          viewport,
+        }).promise;
+
+        pdfContainer.appendChild(canvas);
+      }
+    } catch (err) {
+      pdfContainer.innerHTML =
+        '<p style="color:red;padding:1rem;">PDF konnte nicht geladen werden.</p>';
+      console.error('PDF.js error:', err);
+    }
   }
 
   function openIframeLightbox(url) {
-    lightboxIframe.src = url;
+    iframeSrc.src = url;
     iframeLightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeAll() {
-    imgLightbox.classList.remove('active');
+    pdfLightbox.classList.remove('active');
     iframeLightbox.classList.remove('active');
-    lightboxImg.src = '';
-    lightboxIframe.src = '';
+    pdfContainer.innerHTML = '';
+    iframeSrc.src = '';
     document.body.style.overflow = '';
   }
 
@@ -30,17 +66,15 @@
   // cards[0] = left, cards[1] = middle, cards[2] = right
 
   cards[0].addEventListener('click', () => {
-    //openImageLightbox(cards[0].src);
-    openIframeLightbox('Hauptpreis_Strieder.pdf')
+    openPdfLightbox('submission1.pdf');
   });
 
   cards[1].addEventListener('click', () => {
-    openIframeLightbox('https://bydata.github.io/akwien-marie-neurath/');
+    openIframeLightbox('https://<username>.github.io/<forked-repo>/index.html');
   });
 
   cards[2].addEventListener('click', () => {
-    //openImageLightbox(cards[2].src);
-      openIframeLightbox('Ertl__dieGraphische_Datenvisualisierung_FastFashion.pdf')
+    openPdfLightbox('submission3.pdf');
   });
 
   // ── close buttons ─────────────────────────────────────────
@@ -49,7 +83,7 @@
   });
 
   // close on backdrop click
-  [imgLightbox, iframeLightbox].forEach(lb => {
+  [pdfLightbox, iframeLightbox].forEach(lb => {
     lb.addEventListener('click', e => {
       if (e.target === lb) closeAll();
     });
