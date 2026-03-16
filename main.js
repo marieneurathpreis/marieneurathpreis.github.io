@@ -1,24 +1,35 @@
 (() => {
-  // ── element refs ──────────────────────────────────────────
+  const imgLightbox    = document.getElementById('lightbox-image');
   const iframeLightbox = document.getElementById('lightbox-iframe');
-  const iframeSrc      = document.getElementById('lightbox-iframe-src');
+  const lightboxImg    = document.getElementById('lightbox-img');
+  const lightboxIframe = document.getElementById('lightbox-iframe-src');
 
-  // ── helpers ───────────────────────────────────────────────
+  // ── helpers ──────────────────────────────────────────────
+  function openImageLightbox(src) {
+    lightboxImg.src = src;
+    imgLightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
   function openIframeLightbox(url) {
-    iframeSrc.src = url;
+    lightboxIframe.src = url;
     iframeLightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeAll() {
+    imgLightbox.classList.remove('active');
     iframeLightbox.classList.remove('active');
-    iframeSrc.src = '';
+    lightboxImg.src = '';
+    lightboxIframe.src = '';
     document.body.style.overflow = '';
   }
 
   // ── wire up image cards ───────────────────────────────────
   const cards = document.querySelectorAll('.img-card img');
-  // cards[0] = left, cards[1] = middle, cards[2] = right
+  // cards[0] = 1.png  → submission1.pdf
+  // cards[1] = 3.png  → forked repo (Ansgar Wolsing)
+  // cards[2] = 2.png  → submission3.pdf
 
   cards[0].addEventListener('click', () => {
     openIframeLightbox('submission1.pdf');
@@ -32,14 +43,16 @@
     openIframeLightbox('submission3.pdf');
   });
 
-  // ── close button ──────────────────────────────────────────
+  // ── close buttons ─────────────────────────────────────────
   document.querySelectorAll('.lightbox-close').forEach(btn => {
     btn.addEventListener('click', closeAll);
   });
 
   // close on backdrop click
-  iframeLightbox.addEventListener('click', e => {
-    if (e.target === iframeLightbox) closeAll();
+  [imgLightbox, iframeLightbox].forEach(lb => {
+    lb.addEventListener('click', e => {
+      if (e.target === lb) closeAll();
+    });
   });
 
   // close on Escape
