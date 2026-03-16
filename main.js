@@ -34,7 +34,7 @@
   });
 
   cards[1].addEventListener('click', () => {
-    openIframeLightbox('submission2.html');
+    openIframeLightbox('https://bydata.github.io/akwien-marie-neurath/');
   });
 
   cards[2].addEventListener('click', () => {
