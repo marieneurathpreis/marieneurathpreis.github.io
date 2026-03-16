@@ -6,72 +6,69 @@
   <title>Marie Neurath Preis</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
 
   <!-- Title -->
   <h1 class="page-title">Marie Neurath Preis</h1>
 
-  <!-- Two-column body text -->
-  <div class="two-col">
+  <div>
     <p>
-      Auf dieser Seite finden Sie die 2026 mit dem Marie Neurath Preis für Datenvisualisierung ausgezeichneten Arbeiten.   
-    </p>
-    <p>
-      Bitte besuchen Sie die Website des Marie Neurath Preis 2026 unter <a href="https://wien.arbeiterkammer.at/neurath">https://wien.arbeiterkammer.at/neurath</a>
+      Auf dieser Seite finden Sie die 2026 mit dem Marie Neurath Preis für Datenvisualisierung ausgezeichneten Arbeiten.
     </p>
   </div>
 
-  <hr />
-
-  <!-- Single-column section header -->
-  <h2 class="section-header">Ausgezeichnete Projekte 2026</h2>
+  <br>
 
   <!-- Three-column image + caption -->
   <div class="three-col">
 
     <div class="img-card">
       <img
-        src="1.png"
-        alt="Screenshot Preis 1"
+        src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&q=80"
+        alt="Infografik-Projekt 1"
       />
       <p class="img-caption">
-        <strong style="font-weight:700;">Hauptpreis Maria Strieder</strong><br />
-        "Der Ast auf dem wir sitzen" von Maria Strieder, <a href="https://www.mariastrieder.com/">https://www.mariastrieder.com/</a> CC-BY 4.0 
-        </p>
+        <strong style="font-weight:700;">Hauptpreis</strong><br />
+        Die herausragendste Einreichung wird mit einem Hauptpreis von 3.000 € prämiert. Zusätzlich werden zwei Anerkennungspreise in Höhe von je 1.000 € vergeben.
+      </p>
     </div>
 
     <div class="img-card">
       <img
-        src="3.png"
-        alt="Screenshot Preis 2"
+        src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=800&q=80"
+        alt="Infografik-Projekt 2"
       />
       <p class="img-caption">
-        <strong style="font-weight:700;">Anerkennungspreis Ansgar Wolsing</strong><br />
-        "Wem gehört der Wohlstand in Österreich?" von Ansgar Wolsing, <a href="https://bydata.github.io/akwien-marie-neurath">https://bydata.github.io/akwien-marie-neurath</a> CC-BY 4.0        
-        </p>
+        <strong style="font-weight:700;">Anerkennungspreis "Kategorie 1"</strong><br />
+        Die Auswahl der Preisträger:innen erfolgt durch eine Fachjury, bestehend aus Expert:innen aus Wissenschaft, Medien und Wissensvermittlung.
+      </p>
     </div>
 
     <div class="img-card">
       <img
-        src="2.png"
-        alt="Screenshot Preis 3"
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+        alt="Infografik-Projekt 3"
       />
       <p class="img-caption">
-        <strong style="font-weight:700;">Anerkennungspreis Eliott Ertl</strong><br />
-        "Fast Fashion" von Eliott Ertl, CC-BY 4.0
+        <strong style="font-weight:700;">Anerkennungspreis "Kategorie 2"</strong><br />
+        Die Preisverleihung findet am 17. März 2026 im Rahmen der Finissage der Otto Neurath-Jubiläumsausstellung „Wissen für Alle" im Wien Museum statt.
       </p>
     </div>
 
   </div>
 
-  <!-- Image lightbox -->
-  <div id="lightbox-image" class="lightbox" role="dialog" aria-modal="true">
+  <!-- PDF lightbox (cards 0 and 2) -->
+  <div id="lightbox-pdf" class="lightbox" role="dialog" aria-modal="true">
     <button class="lightbox-close" aria-label="Schließen">&times;</button>
-    <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+    <div class="lightbox-pdf-wrap">
+      <div id="lightbox-pdf-container"></div>
+    </div>
   </div>
 
-  <!-- iFrame lightbox -->
+  <!-- iFrame lightbox (card 1) -->
   <div id="lightbox-iframe" class="lightbox" role="dialog" aria-modal="true">
     <button class="lightbox-close" aria-label="Schließen">&times;</button>
     <div class="lightbox-frame-wrap">
