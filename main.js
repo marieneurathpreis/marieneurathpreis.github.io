@@ -30,7 +30,8 @@
   // cards[0] = left, cards[1] = middle, cards[2] = right
 
   cards[0].addEventListener('click', () => {
-    openImageLightbox(cards[0].src);
+    //openImageLightbox(cards[0].src);
+    openIframeLightbox('Hauptpreis_Strieder.pdf')
   });
 
   cards[1].addEventListener('click', () => {
